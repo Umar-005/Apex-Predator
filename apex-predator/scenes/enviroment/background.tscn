@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://pvgeat6adq1p"]
+
+[ext_resource type="Texture2D" uid="uid://eo32ecxl5na8" path="res://assets/backgrounds/far.png" id="1_22yvx"]
+[ext_resource type="Texture2D" uid="uid://c5esdmjrdqgj8" path="res://assets/backgrounds/foregound-merged.png" id="2_ye1qa"]
+
+[node name="Background" type="Node2D" unique_id=1240222558]
+
+[node name="Far" type="Parallax2D" parent="." unique_id=84165265]
+scale = Vector2(4, 4)
+scroll_scale = Vector2(0.4, 0.4)
+repeat_size = Vector2(256, 0)
+repeat_times = 5
+
+[node name="Sprite2D" type="Sprite2D" parent="Far" unique_id=1109397705]
+position = Vector2(0, -50)
+scale = Vector2(1, 1.25)
+texture = ExtResource("1_22yvx")
+centered = false
+
+[node name="Foreground" type="Parallax2D" parent="." unique_id=896563248]
+repeat_size = Vector2(512, 0)
+repeat_times = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="Foreground" unique_id=296968461]
+position = Vector2(0, 110)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ye1qa")
+centered = false
+offset = Vector2(0, 168)

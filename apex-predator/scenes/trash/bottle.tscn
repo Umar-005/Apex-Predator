@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dwlimkk1nvidx"]
+
+[ext_resource type="Script" uid="uid://dfnk7qypm5grk" path="res://scripts/bottle.gd" id="1_oahwi"]
+[ext_resource type="Texture2D" uid="uid://c8nbiuuowqlgx" path="res://assets/trash/water bottle dirty.png" id="1_olv0n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(6, 13)
+
+[node name="Bottle" type="Area2D" unique_id=942620168 groups=["trash"]]
+script = ExtResource("1_oahwi")
+health_reward = 8.0
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1728105685]
+texture = ExtResource("1_olv0n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1302473624]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_t1dns")

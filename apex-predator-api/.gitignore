@@ -1,0 +1,10 @@
+# Godot
+.godot/
+
+# Node.js
+node_modules/
+.env
+
+# Database
+*.sqlite
+*.sqlite-journal

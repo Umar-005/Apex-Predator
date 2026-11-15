@@ -1,0 +1,177 @@
+[gd_scene format=3 uid="uid://dnm1jkt8embmg"]
+
+[ext_resource type="Script" uid="uid://b7fmsum7uua7p" path="res://scripts/fish.gd" id="1_h5umb"]
+[ext_resource type="Texture2D" uid="uid://bauesc6reee8m" path="res://assets/marine_life/jellyfishAttack.png" id="2_78n88"]
+[ext_resource type="Texture2D" uid="uid://dmvrpl8vdi2l2" path="res://assets/marine_life/jellyfish.png" id="2_vwxv2"]
+[ext_resource type="AudioStream" uid="uid://cjl1yolgymxix" path="res://assets/audio/attack.mp3" id="3_78n88"]
+[ext_resource type="Texture2D" uid="uid://rkfoon51qrom" path="res://assets/marine_life/jellyfishDeath.png" id="3_rv7ss"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rk354"]
+atlas = ExtResource("2_78n88")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk4r0"]
+atlas = ExtResource("2_78n88")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o8yvw"]
+atlas = ExtResource("2_78n88")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ou84l"]
+atlas = ExtResource("2_78n88")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y08t1"]
+atlas = ExtResource("3_rv7ss")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wyfb8"]
+atlas = ExtResource("3_rv7ss")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k2fwf"]
+atlas = ExtResource("3_rv7ss")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7q20"]
+atlas = ExtResource("3_rv7ss")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rylli"]
+atlas = ExtResource("3_rv7ss")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hmuo7"]
+atlas = ExtResource("3_rv7ss")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rv7ss"]
+atlas = ExtResource("2_vwxv2")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wcl2"]
+atlas = ExtResource("2_vwxv2")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o2g5d"]
+atlas = ExtResource("2_vwxv2")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbuhl"]
+atlas = ExtResource("2_vwxv2")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1dns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rk354")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk4r0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o8yvw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ou84l")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y08t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wyfb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k2fwf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7q20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rylli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hmuo7")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rv7ss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wcl2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o2g5d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbuhl")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvo1i"]
+size = Vector2(78.666664, 15.500003)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1dns"]
+radius = 200.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(82, 14.416667)
+
+[node name="Jellyfish" type="CharacterBody2D" unique_id=1207321505 groups=["marine_life"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_h5umb")
+required_level = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1661998975]
+sprite_frames = SubResource("SpriteFrames_t1dns")
+animation = &"attack"
+autoplay = "default"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=364963925]
+position = Vector2(0, 2)
+scale = Vector2(-0.25526068, 2.0334048)
+shape = SubResource("RectangleShape2D_yvo1i")
+
+[node name="Domain" type="Area2D" parent="." unique_id=679899523]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Domain" unique_id=1507544196]
+shape = SubResource("CircleShape2D_t1dns")
+
+[node name="WarningLabel" type="Label" parent="." unique_id=1516878283]
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="HitBox" type="Area2D" parent="." unique_id=2089110748 groups=["marine_life"]]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1800505745]
+position = Vector2(0, 3.3333333)
+scale = Vector2(-0.2874167, -1.9443443)
+shape = SubResource("RectangleShape2D_t1dns")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=96630828]
+stream = ExtResource("3_78n88")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Domain" to="." method="_on_domain_body_entered"]
+[connection signal="body_exited" from="Domain" to="." method="_on_domain_body_exited"]
+[connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]

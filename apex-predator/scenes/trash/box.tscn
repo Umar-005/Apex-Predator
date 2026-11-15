@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://pwm6n6lprwer"]
+
+[ext_resource type="Script" uid="uid://dfnk7qypm5grk" path="res://scripts/bottle.gd" id="1_x0ejt"]
+[ext_resource type="Texture2D" uid="uid://bkfshrqdo3d6y" path="res://assets/trash/box 1.png" id="2_wwwdf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(6, 13)
+
+[node name="Box" type="Area2D" unique_id=942620168 groups=["trash"]]
+script = ExtResource("1_x0ejt")
+drift_speed = 15.0
+bob_speed = 1.5
+bob_amount = 5.0
+health_reward = 12.0
+xp_reward = 12
+score_reward = 15
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1728105685]
+texture = ExtResource("2_wwwdf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1302473624]
+position = Vector2(0, 0.5)
+scale = Vector2(4.3199987, 1.3199999)
+shape = SubResource("RectangleShape2D_t1dns")

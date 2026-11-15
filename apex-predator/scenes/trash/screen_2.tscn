@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dj6i18k58ktou"]
+
+[ext_resource type="Script" uid="uid://dfnk7qypm5grk" path="res://scripts/bottle.gd" id="1_4bu8j"]
+[ext_resource type="Texture2D" uid="uid://durmyp4301wfh" path="res://assets/trash/screen 3.png" id="2_80qpv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(6, 13)
+
+[node name="screen2" type="Area2D" unique_id=811314030 groups=["trash"]]
+script = ExtResource("1_4bu8j")
+required_level = 2
+drift_speed = 20.0
+bob_amount = 3.0
+xp_reward = 30
+score_reward = 40
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=760068186]
+texture = ExtResource("2_80qpv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=288460365]
+position = Vector2(0, 0.5)
+scale = Vector2(3.1200016, 1.3600001)
+shape = SubResource("RectangleShape2D_t1dns")

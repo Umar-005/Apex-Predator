@@ -1,0 +1,211 @@
+[gd_scene format=3 uid="uid://cpyp8rlf0ysb1"]
+
+[ext_resource type="Script" uid="uid://b7fmsum7uua7p" path="res://scripts/fish.gd" id="1_8koax"]
+[ext_resource type="Texture2D" uid="uid://bpil06axt60k3" path="res://assets/marine_life/uglyfishAttack.png" id="2_hkuli"]
+[ext_resource type="Texture2D" uid="uid://d3gv6vhddh3or" path="res://assets/marine_life/uglyfishDeath.png" id="3_yln4x"]
+[ext_resource type="Texture2D" uid="uid://bcttu3q5p6awd" path="res://assets/marine_life/uglyfish.png" id="4_08uvn"]
+[ext_resource type="AudioStream" uid="uid://cjl1yolgymxix" path="res://assets/audio/attack.mp3" id="5_76m3c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_muogh"]
+atlas = ExtResource("2_hkuli")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_42d80"]
+atlas = ExtResource("2_hkuli")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_14lk4"]
+atlas = ExtResource("2_hkuli")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxngf"]
+atlas = ExtResource("2_hkuli")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_in7s7"]
+atlas = ExtResource("2_hkuli")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7spr"]
+atlas = ExtResource("2_hkuli")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o1y1l"]
+atlas = ExtResource("3_yln4x")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uj7jm"]
+atlas = ExtResource("3_yln4x")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_706w6"]
+atlas = ExtResource("3_yln4x")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rak7d"]
+atlas = ExtResource("3_yln4x")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h80ng"]
+atlas = ExtResource("3_yln4x")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6kup7"]
+atlas = ExtResource("3_yln4x")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vrckh"]
+atlas = ExtResource("4_08uvn")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i8dj"]
+atlas = ExtResource("4_08uvn")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xdn0"]
+atlas = ExtResource("4_08uvn")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hoah6"]
+atlas = ExtResource("4_08uvn")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4tdon"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_muogh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_42d80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_14lk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxngf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_in7s7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7spr")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o1y1l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uj7jm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_706w6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rak7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h80ng")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6kup7")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vrckh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5i8dj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xdn0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hoah6")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvo1i"]
+size = Vector2(78.666664, 15.500003)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ffd81"]
+radius = 130.0
+
+[sub_resource type="GDScript" id="GDScript_rf6sq"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(82, 14.416667)
+
+[node name="UglyFish" type="CharacterBody2D" unique_id=1207321505 groups=["marine_life"]]
+scale = Vector2(2.5, 2.5)
+script = ExtResource("1_8koax")
+swim_speed = 150.0
+chase_speed = 320.0
+required_level = 6
+attack_damage = 40.0
+attack_cooldown = 0.7
+attack_range = 150.0
+xp_reward = 75
+health_reward = 50
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1661998975]
+sprite_frames = SubResource("SpriteFrames_4tdon")
+animation = &"attack"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=364963925]
+position = Vector2(-3.9999995, 1.9999999)
+scale = Vector2(0.4120691, 1.2267656)
+shape = SubResource("RectangleShape2D_yvo1i")
+
+[node name="Domain" type="Area2D" parent="." unique_id=679899523]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Domain" unique_id=1153008346]
+shape = SubResource("CircleShape2D_ffd81")
+script = SubResource("GDScript_rf6sq")
+
+[node name="WarningLabel" type="Label" parent="." unique_id=1516878283]
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="HitBox" type="Area2D" parent="." unique_id=2089110748 groups=["marine_life"]]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1800505745]
+position = Vector2(-4, 1.3333333)
+scale = Vector2(0.38137648, 1.4488446)
+shape = SubResource("RectangleShape2D_t1dns")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=96630828]
+stream = ExtResource("5_76m3c")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Domain" to="." method="_on_domain_body_entered"]
+[connection signal="body_exited" from="Domain" to="." method="_on_domain_body_exited"]
+[connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]

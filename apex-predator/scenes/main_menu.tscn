@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://c46np0ug38pi0"]
+
+[ext_resource type="PackedScene" uid="uid://pvgeat6adq1p" path="res://scenes/enviroment/background.tscn" id="1_l6cm7"]
+[ext_resource type="FontFile" uid="uid://dsuu7d2802gpb" path="res://assets/fonts/PressStart2P-Regular.ttf" id="2_ekxnf"]
+
+[sub_resource type="GDScript" id="GDScript_vue75"]
+script/source = "extends Control
+@onready var username_input: LineEdit = $CenterContainer/VBoxContainer/UsernameContainer/Username
+
+func _on_start_button_pressed() -> void:
+	var username = username_input.text.strip_edges()
+
+	if username.is_empty():
+		username_input.placeholder_text = \"Username Required!\"
+		username_input.grab_focus()
+		return
+
+	get_tree().change_scene_to_file(\"res://scenes/main.tscn\")
+"
+
+[node name="MainMenu" type="Control" unique_id=550164286]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 640.0
+offset_bottom = 360.0
+script = SubResource("GDScript_vue75")
+
+[node name="Background" parent="." unique_id=1240222558 instance=ExtResource("1_l6cm7")]
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1103017047]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=2061006057]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="CenterContainer/VBoxContainer" unique_id=552164260]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 32
+text = "Apex Predator"
+
+[node name="Subtitle" type="Label" parent="CenterContainer/VBoxContainer" unique_id=982697437]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.6039216)
+theme_override_fonts/font = ExtResource("2_ekxnf")
+text = "EAT TRASH. FEAR FISH."
+horizontal_alignment = 1
+
+[node name="UsernameContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" unique_id=1780101474]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+
+[node name="Username" type="LineEdit" parent="CenterContainer/VBoxContainer/UsernameContainer" unique_id=628103519]
+custom_minimum_size = Vector2(200, 30)
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 12
+placeholder_text = "username"
+alignment = 1
+max_length = 15
+
+[node name="StartContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" unique_id=1720224019]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="CenterContainer/VBoxContainer/StartContainer" unique_id=1352813730]
+custom_minimum_size = Vector2(200, 30)
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 12
+text = "Start"
+
+[node name="LeaderboardContainer" type="CenterContainer" parent="CenterContainer/VBoxContainer" unique_id=69415674]
+layout_mode = 2
+
+[node name="LeaderboardButton" type="Button" parent="CenterContainer/VBoxContainer/LeaderboardContainer" unique_id=1926904980]
+custom_minimum_size = Vector2(200, 30)
+custom_maximum_size = Vector2(200, -1)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 12
+text = "Leaderboard
+"
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/StartContainer/StartButton" to="." method="_on_start_button_pressed"]

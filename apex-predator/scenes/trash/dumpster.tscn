@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bl8g5tywfc1lg"]
+
+[ext_resource type="Script" uid="uid://dfnk7qypm5grk" path="res://scripts/bottle.gd" id="1_728ur"]
+[ext_resource type="Texture2D" uid="uid://boppx05b18md5" path="res://assets/trash/Dumpster 1 - Animated_spritesheet.png" id="2_30rgb"]
+[ext_resource type="AudioStream" uid="uid://dwi8s2qxk8ixl" path="res://assets/audio/doorslam.wav" id="3_30rgb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(6, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqtyu"]
+atlas = ExtResource("2_30rgb")
+region = Rect2(0, 0, 70, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2d1s3"]
+atlas = ExtResource("2_30rgb")
+region = Rect2(70, 0, 70, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vng4r"]
+atlas = ExtResource("2_30rgb")
+region = Rect2(140, 0, 70, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76bey"]
+atlas = ExtResource("2_30rgb")
+region = Rect2(210, 0, 70, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fen2s"]
+atlas = ExtResource("2_30rgb")
+region = Rect2(280, 0, 70, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xvxsb"]
+atlas = ExtResource("2_30rgb")
+region = Rect2(350, 0, 70, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56wer"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqtyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2d1s3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vng4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76bey")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fen2s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xvxsb")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Dumpster" type="Area2D" unique_id=942620168 groups=["trash"]]
+script = ExtResource("1_728ur")
+required_level = 5
+drift_speed = 20.0
+bob_amount = 3.0
+health_reward = 80.0
+xp_reward = 75
+score_reward = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1302473624]
+position = Vector2(0, 5)
+scale = Vector2(10.410967, 4.150313)
+shape = SubResource("RectangleShape2D_t1dns")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1809624212]
+sprite_frames = SubResource("SpriteFrames_56wer")
+autoplay = "default"
+frame_progress = 0.7822127
+
+[node name="DoorSound" type="AudioStreamPlayer2D" parent="." unique_id=119359408]
+stream = ExtResource("3_30rgb")
+volume_db = -20.0
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]

@@ -1,0 +1,201 @@
+[gd_scene format=3 uid="uid://brwst5bwep28h"]
+
+[ext_resource type="Script" uid="uid://b7fmsum7uua7p" path="res://scripts/fish.gd" id="1_6uk2k"]
+[ext_resource type="Texture2D" uid="uid://rclde2ml3tmr" path="res://assets/marine_life/fish.png" id="2_62m5g"]
+[ext_resource type="Texture2D" uid="uid://bjckjqd13t7t6" path="res://assets/marine_life/fishAttack.png" id="2_uwd3w"]
+[ext_resource type="Texture2D" uid="uid://cku0yfyqgogxb" path="res://assets/marine_life/fishDeath.png" id="3_6lccb"]
+[ext_resource type="AudioStream" uid="uid://cjl1yolgymxix" path="res://assets/audio/attack.mp3" id="5_6lccb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_76iby"]
+atlas = ExtResource("2_uwd3w")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3xio"]
+atlas = ExtResource("2_uwd3w")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4uac3"]
+atlas = ExtResource("2_uwd3w")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6ysd2"]
+atlas = ExtResource("2_uwd3w")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlmdt"]
+atlas = ExtResource("2_uwd3w")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_akfxm"]
+atlas = ExtResource("2_uwd3w")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dsnxs"]
+atlas = ExtResource("3_6lccb")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40h1b"]
+atlas = ExtResource("3_6lccb")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_744sp"]
+atlas = ExtResource("3_6lccb")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_stw03"]
+atlas = ExtResource("3_6lccb")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05lls"]
+atlas = ExtResource("3_6lccb")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3y02n"]
+atlas = ExtResource("3_6lccb")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1otj5"]
+atlas = ExtResource("2_62m5g")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qpsc5"]
+atlas = ExtResource("2_62m5g")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7m7x"]
+atlas = ExtResource("2_62m5g")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fopuh"]
+atlas = ExtResource("2_62m5g")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1dns"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_76iby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3xio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4uac3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6ysd2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlmdt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_akfxm")
+}],
+"loop": 0,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dsnxs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40h1b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_744sp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_stw03")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05lls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3y02n")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1otj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qpsc5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7m7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fopuh")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvo1i"]
+size = Vector2(39, 12)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ffd81"]
+radius = 200.0
+
+[sub_resource type="GDScript" id="GDScript_rf6sq"]
+script/source = "extends CollisionShape2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(40, 12.5)
+
+[node name="Fish" type="CharacterBody2D" unique_id=1207321505 groups=["marine_life"]]
+scale = Vector2(1.5, 1.5)
+script = ExtResource("1_6uk2k")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1661998975]
+sprite_frames = SubResource("SpriteFrames_t1dns")
+animation = &"attack"
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=364963925]
+position = Vector2(-0.5, 5)
+shape = SubResource("RectangleShape2D_yvo1i")
+
+[node name="Domain" type="Area2D" parent="." unique_id=679899523]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Domain" unique_id=1153008346]
+shape = SubResource("CircleShape2D_ffd81")
+script = SubResource("GDScript_rf6sq")
+
+[node name="WarningLabel" type="Label" parent="." unique_id=1516878283]
+offset_top = -30.0
+offset_right = 40.0
+offset_bottom = 4.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+
+[node name="HitBox" type="Area2D" parent="." unique_id=2089110748 groups=["marine_life"]]
+collision_layer = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1800505745]
+position = Vector2(0, 5.25)
+shape = SubResource("RectangleShape2D_t1dns")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=96630828]
+stream = ExtResource("5_6lccb")
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Domain" to="." method="_on_domain_body_entered"]
+[connection signal="body_exited" from="Domain" to="." method="_on_domain_body_exited"]
+[connection signal="area_shape_entered" from="HitBox" to="." method="_on_hit_box_area_shape_entered"]

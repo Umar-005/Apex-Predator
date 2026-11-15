@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c33uvwgasghah"]
+
+[ext_resource type="Script" uid="uid://dfnk7qypm5grk" path="res://scripts/bottle.gd" id="1_ymemc"]
+[ext_resource type="Texture2D" uid="uid://bo425ysma07x5" path="res://assets/trash/Trash Bag 1.png" id="2_ymemc"]
+[ext_resource type="AudioStream" uid="uid://b10jg5r1lck8q" path="res://assets/audio/plasticbag.wav" id="3_xxdwj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(6, 13)
+
+[node name="trash1" type="Area2D" unique_id=942620168 groups=["trash"]]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_ymemc")
+drift_speed = 2.5
+bob_speed = 12.0
+bob_amount = 12.0
+xp_reward = 15
+score_reward = 20
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1728105685]
+texture = ExtResource("2_ymemc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1302473624]
+position = Vector2(-1, 0)
+scale = Vector2(3.2464979, 1.6149273)
+shape = SubResource("RectangleShape2D_t1dns")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=2013588163]
+stream = ExtResource("3_xxdwj")

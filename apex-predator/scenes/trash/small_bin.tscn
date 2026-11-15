@@ -1,0 +1,70 @@
+[gd_scene format=3 uid="uid://d2g31bf0qlkbe"]
+
+[ext_resource type="Script" uid="uid://dfnk7qypm5grk" path="res://scripts/bottle.gd" id="1_56wer"]
+[ext_resource type="Texture2D" uid="uid://xufsq7t4nxt5" path="res://assets/trash/Small Bin 1 - Animated_spritesheet.png" id="2_a04xg"]
+[ext_resource type="AudioStream" uid="uid://dwi8s2qxk8ixl" path="res://assets/audio/doorslam.wav" id="3_a04xg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
+size = Vector2(6, 13)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e28ax"]
+atlas = ExtResource("2_a04xg")
+region = Rect2(0, 0, 34, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kufla"]
+atlas = ExtResource("2_a04xg")
+region = Rect2(34, 0, 34, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l5dpd"]
+atlas = ExtResource("2_a04xg")
+region = Rect2(68, 0, 34, 69)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1txus"]
+atlas = ExtResource("2_a04xg")
+region = Rect2(102, 0, 34, 69)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yvo1i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e28ax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kufla")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l5dpd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1txus")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="SmallBin" type="Area2D" unique_id=942620168 groups=["trash"]]
+script = ExtResource("1_56wer")
+required_level = 4
+drift_speed = 5.0
+bob_speed = 0.1
+bob_amount = 1.0
+health_reward = 40.0
+xp_reward = 50
+score_reward = 100
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1302473624]
+position = Vector2(0, 5)
+scale = Vector2(4.010966, 4.150313)
+shape = SubResource("RectangleShape2D_t1dns")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1809624212]
+sprite_frames = SubResource("SpriteFrames_yvo1i")
+autoplay = "default"
+frame_progress = 0.6830562
+
+[node name="DoorSound" type="AudioStreamPlayer2D" parent="." unique_id=1133846713]
+stream = ExtResource("3_a04xg")
+volume_db = -27.0
+
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_frame_changed"]
