@@ -9,7 +9,7 @@ extends Node2D
 @onready var trash_spawner: Timer = $TrashSpawner
 @onready var score_request: HTTPRequest = $ScoreRequest
 
-const API_URL = "http://localhost:3000/scores"
+const API_URL = "https://apex-predator-api-0oo5.onrender.com/scores"
 
 const TRASH_SCENES = [
 	preload("res://scenes/trash/bottle.tscn"),

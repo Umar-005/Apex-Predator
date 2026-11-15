@@ -151,7 +151,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yvo1i"]
-size = Vector2(78.666664, 15.500003)
+size = Vector2(72, 15.500003)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ffd81"]
 radius = 130.0
@@ -171,10 +171,12 @@ func _process(delta: float) -> void:
 "
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t1dns"]
-size = Vector2(82, 14.416667)
+size = Vector2(68, 14.416667)
 
 [node name="eele" type="CharacterBody2D" unique_id=1207321505 groups=["marine_life"]]
 scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_4tdon")
 swim_speed = 130.0
 territory_radius = 300.0
@@ -193,10 +195,12 @@ animation = &"attack"
 autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=364963925]
-position = Vector2(-6.666667, 2.6666641)
+position = Vector2(-3.3333347, 2.6666641)
 shape = SubResource("RectangleShape2D_yvo1i")
 
 [node name="Domain" type="Area2D" parent="." unique_id=679899523]
+collision_layer = 4
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Domain" unique_id=1153008346]
 shape = SubResource("CircleShape2D_ffd81")
@@ -213,7 +217,7 @@ theme_override_font_sizes/font_size = 24
 collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1800505745]
-position = Vector2(-4.6666665, 2.666668)
+position = Vector2(-2.6666667, 2.666668)
 shape = SubResource("RectangleShape2D_t1dns")
 
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="." unique_id=96630828]

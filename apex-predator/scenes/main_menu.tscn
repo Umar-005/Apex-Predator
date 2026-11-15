@@ -14,7 +14,7 @@ script/source = "extends Control
 func _ready():
 	leaderboard_request.request_completed.connect(_on_leaderboard_received)
 
-	leaderboard_request.request(\"http://localhost:3000/leaderboard\")
+	leaderboard_request.request(\"https://apex-predator-api-0oo5.onrender.com/leaderboard\")
 
 
 func _on_leaderboard_received(result, response_code, headers, body):

@@ -133,6 +133,8 @@ size = Vector2(82, 14.416667)
 
 [node name="Jellyfish" type="CharacterBody2D" unique_id=1207321505 groups=["marine_life"]]
 scale = Vector2(1.5, 1.5)
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_h5umb")
 required_level = 4
 
@@ -149,6 +151,7 @@ scale = Vector2(-0.25526068, 2.0334048)
 shape = SubResource("RectangleShape2D_yvo1i")
 
 [node name="Domain" type="Area2D" parent="." unique_id=679899523]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Domain" unique_id=1507544196]
 shape = SubResource("CircleShape2D_t1dns")
@@ -161,7 +164,6 @@ theme_override_colors/font_color = Color(1, 0, 0, 1)
 theme_override_font_sizes/font_size = 24
 
 [node name="HitBox" type="Area2D" parent="." unique_id=2089110748 groups=["marine_life"]]
-collision_layer = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1800505745]
 position = Vector2(0, 3.3333333)

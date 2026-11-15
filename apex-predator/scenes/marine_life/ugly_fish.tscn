@@ -161,6 +161,8 @@ size = Vector2(82, 14.416667)
 
 [node name="UglyFish" type="CharacterBody2D" unique_id=1207321505 groups=["marine_life"]]
 scale = Vector2(2.5, 2.5)
+collision_layer = 4
+collision_mask = 2
 script = ExtResource("1_8koax")
 swim_speed = 150.0
 chase_speed = 320.0

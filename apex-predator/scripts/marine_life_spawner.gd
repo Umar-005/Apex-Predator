@@ -38,8 +38,8 @@ func spawn_fish() -> void:
 		var scene = pick_weighted_scene()
 		var creature = scene.instantiate()
 
+		creature.position = to_local(spawn_position)
 		add_child(creature)
-		creature.global_position = spawn_position
 		creature.tree_exited.connect(respawn_marine_life)
 		return
 
@@ -81,10 +81,10 @@ func update_spawn_weights(player_level: int) -> void:
 		spawn_weights = [50, 25, 15, 5, 3, 2]
 
 	elif player_level <= 4:
-		spawn_weights = [35, 30, 20, 10, 3, 2]
+		spawn_weights = [30, 27, 20, 10, 8, 5]
 
 	elif player_level <= 6:
-		spawn_weights = [20, 20, 25, 20, 10, 5]
+		spawn_weights = [15, 20, 25, 20, 12, 8]
 
 	else:
-		spawn_weights = [10, 15, 20, 20, 20, 15]
+		spawn_weights = [5, 10, 20, 20, 25, 20]

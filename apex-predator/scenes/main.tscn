@@ -276,7 +276,6 @@ text = "HP
 "
 
 [node name="TrashSpawner" type="Timer" parent="." unique_id=1919238840]
-wait_time = 2.0
 autostart = true
 
 [node name="BackgroundAudio" type="AudioStreamPlayer2D" parent="." unique_id=631505999]
@@ -287,7 +286,7 @@ autoplay = true
 [node name="MarineLifeSpawner" type="Node2D" parent="." unique_id=1886938766]
 script = ExtResource("9_85g3d")
 marine_life_scenes = Array[PackedScene]([ExtResource("8_tipki"), ExtResource("10_choun"), ExtResource("11_a8y0u"), ExtResource("12_jkv2x"), ExtResource("13_jbj1t"), ExtResource("14_muem4")])
-max_fish = 20
+max_fish = 30
 
 [node name="Jellyfish" parent="." unique_id=1207321505 instance=ExtResource("10_choun")]
 

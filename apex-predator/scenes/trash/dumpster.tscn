@@ -62,7 +62,7 @@ script = ExtResource("1_728ur")
 required_level = 5
 drift_speed = 20.0
 bob_amount = 3.0
-health_reward = 80.0
+health_reward = 70.0
 xp_reward = 75
 score_reward = 100
 

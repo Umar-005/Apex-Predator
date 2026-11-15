@@ -6,7 +6,7 @@ extends CharacterBody2D
 @export var required_level = 3
 @export var attack_damage = 10.0
 @export var attack_cooldown = 0.3
-@export var attack_range = 100.0
+@export var attack_range = 80.0
 @export var xp_reward = 30
 @export var health_reward = 10
 
@@ -39,9 +39,9 @@ func _physics_process(delta: float) -> void:
 	if shark_in_domain:
 		time_in_domain += delta
 
-		if time_in_domain >= 2.75:
+		if time_in_domain >= 2.25:
 			state = State.AGGRESSIVE
-		elif time_in_domain >= 1.5:
+		elif time_in_domain >= 1.0:
 			state = State.WARNING
 		else:
 			state = State.PASSIVE
@@ -53,23 +53,30 @@ func _physics_process(delta: float) -> void:
 		direction = global_position.direction_to(shark.global_position)
 		var distance = global_position.distance_to(shark.global_position)
 
-		if distance <= attack_range:
+		# Chase until within attack range
+		if distance > attack_range:
+			velocity = direction * chase_speed
+		else:
+			# Stop moving and attack
 			velocity = Vector2.ZERO
 
 			if attack_timer <= 0.0:
 				attack()
-
-		elif distance > attack_range + 15.0:
-			velocity = direction * chase_speed
-
-		else:
-			velocity = Vector2.ZERO
 
 	else:
 		direction = global_position.direction_to(target_position)
 		velocity = direction * swim_speed
 
 	move_and_slide()
+	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+	
+		if collision.get_collider() == shark:
+			velocity = Vector2.ZERO
+	
+			if state == State.AGGRESSIVE and attack_timer <= 0.0:
+				attack()
 
 	# Sprite direction
 	if direction.x != 0:
@@ -92,6 +99,7 @@ func _physics_process(delta: float) -> void:
 		State.AGGRESSIVE:
 			$WarningLabel.text = "!!"
 			$WarningLabel.show()
+
 
 func pick_new_target() -> void:
 	var direction = [-1.0, 1.0].pick_random()

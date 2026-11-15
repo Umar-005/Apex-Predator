@@ -43,7 +43,7 @@ func _physics_process(delta: float) -> void:
 		print("Overlapping areas:", attack_hit_box.get_overlapping_areas())
 
 	# Health decay
-	var health_decay = 6.0 + (level - 1) * 4.0
+	var health_decay = 6.0 + (level - 1) * 4.75
 	health -= health_decay * delta
 	health = clamp(health, 0.0, max_health)
 

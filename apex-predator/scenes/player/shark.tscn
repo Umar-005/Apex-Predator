@@ -151,6 +151,8 @@ size = Vector2(58, 23)
 radius = 14.0
 
 [node name="Shark" type="CharacterBody2D" unique_id=990862908]
+collision_layer = 3
+collision_mask = 5
 script = ExtResource("1_skie4")
 
 [node name="swim" type="AnimatedSprite2D" parent="." unique_id=1267227779]
