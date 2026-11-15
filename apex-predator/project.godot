@@ -14,6 +14,10 @@ config/name="ApexPredator"
 run/main_scene="uid://c46np0ug38pi0"
 config/features=PackedStringArray("4.7", "Forward Plus")
 
+[autoload]
+
+Global="*uid://cq4sx8d0jq0x5"
+
 [display]
 
 window/size/viewport_width=640

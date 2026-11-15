@@ -6,6 +6,42 @@
 [sub_resource type="GDScript" id="GDScript_vue75"]
 script/source = "extends Control
 @onready var username_input: LineEdit = $CenterContainer/VBoxContainer/UsernameContainer/Username
+@onready var leaderboard_panel = $LeaderboardPanel
+@onready var scores_container = $LeaderboardPanel/VBoxContainer/ScoresContainer
+@onready var leaderboard_request = $LeaderboardRequest
+
+
+func _ready():
+	leaderboard_request.request_completed.connect(_on_leaderboard_received)
+
+	leaderboard_request.request(\"http://localhost:3000/leaderboard\")
+
+
+func _on_leaderboard_received(result, response_code, headers, body):
+	if result != HTTPRequest.RESULT_SUCCESS or response_code != 200:
+		print(\"Failed to load leaderboard\")
+		return
+
+	var data = JSON.parse_string(body.get_string_from_utf8())
+
+	if not data is Array:
+		return
+
+	for child in scores_container.get_children():
+		child.queue_free()
+
+	for i in range(data.size()):
+		var player = data[i]
+
+		var label = Label.new()
+		label.text = \"%d. %s - %d points (Level %d)\" % [
+			i + 1,
+			player[\"username\"],
+			player[\"score\"],
+			player[\"level\"]
+		]
+
+		scores_container.add_child(label)
 
 func _on_start_button_pressed() -> void:
 	var username = username_input.text.strip_edges()
@@ -15,7 +51,20 @@ func _on_start_button_pressed() -> void:
 		username_input.grab_focus()
 		return
 
+	Global.username = username
+
 	get_tree().change_scene_to_file(\"res://scenes/main.tscn\")
+
+
+func _on_leaderboard_button_pressed():
+	$CenterContainer.hide()
+	leaderboard_panel.show()
+	leaderboard_request.request(\"http://localhost:3000/leaderboard\")
+
+
+func _on_back_button_pressed():
+	leaderboard_panel.hide()
+	$CenterContainer.show()
 "
 
 [node name="MainMenu" type="Control" unique_id=550164286]
@@ -90,4 +139,40 @@ theme_override_font_sizes/font_size = 12
 text = "Leaderboard
 "
 
+[node name="LeaderboardRequest" type="HTTPRequest" parent="." unique_id=1784186542]
+
+[node name="LeaderboardPanel" type="PanelContainer" parent="." unique_id=1254874280]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -168.0
+offset_top = -153.0
+offset_right = 168.0
+offset_bottom = 153.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LeaderboardPanel" unique_id=722242216]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="LeaderboardPanel/VBoxContainer" unique_id=1167123261]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+theme_override_font_sizes/font_size = 24
+text = "TOP 10 PLAYERS"
+
+[node name="ScoresContainer" type="VBoxContainer" parent="LeaderboardPanel/VBoxContainer" unique_id=598938624]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="LeaderboardPanel/VBoxContainer" unique_id=1324628795]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ekxnf")
+text = "Back"
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/StartContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CenterContainer/VBoxContainer/LeaderboardContainer/LeaderboardButton" to="." method="_on_leaderboard_button_pressed"]
+[connection signal="pressed" from="LeaderboardPanel/VBoxContainer/BackButton" to="." method="_on_back_button_pressed"]

@@ -288,9 +288,10 @@ autoplay = true
 script = ExtResource("9_85g3d")
 marine_life_scenes = Array[PackedScene]([ExtResource("8_tipki"), ExtResource("10_choun"), ExtResource("11_a8y0u"), ExtResource("12_jkv2x"), ExtResource("13_jbj1t"), ExtResource("14_muem4")])
 max_fish = 20
-spawn_weights = Array[int]([40, 25, 12, 10, 8, 5])
 
 [node name="Jellyfish" parent="." unique_id=1207321505 instance=ExtResource("10_choun")]
+
+[node name="ScoreRequest" type="HTTPRequest" parent="." unique_id=2144223627]
 
 [connection signal="pressed" from="CanvasLayer/GameOver/CenterContainer/VBoxContainer/RestartButton" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/GameOver/CenterContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
